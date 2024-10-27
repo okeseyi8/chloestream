@@ -1,0 +1,36 @@
+<!-- Include Video.js library and CSS -->
+<link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+<script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+
+<div class="mistvideo" id="chloetv_qbhix7LrFymy">
+  <noscript>
+    <a href="http://192.168.0.146:8080/chloetv.html" target="_blank">
+      Click here to play this video
+    </a>
+  </noscript>
+  <!-- Video.js player element -->
+  <video-js id="video-player" class="video-js vjs-default-skin" controls preload="auto" width="640" height="360">
+    <source src="http://192.168.0.146:8080/hls/chloetv/index.m3u8" type="application/x-mpegURL">
+  </video-js>
+
+  <script>
+    // Function to initialize Video.js once the player script is loaded
+    var a = function () {
+      // Initialize Video.js player for the provided element
+      videojs("video-player", {
+        autoplay: true,
+        controls: true
+      });
+    };
+
+    // Check if MistServer players are loaded
+    if (!window.mistplayers) {
+      var p = document.createElement("script");
+      p.src = "http://192.168.0.146:8080/player.js";
+      document.head.appendChild(p);
+      p.onload = a;  // Load Video.js player on MistServer script load
+    } else {
+      a();
+    }
+  </script>
+</div>
